@@ -39,6 +39,13 @@ typedef struct string string_t;
 string_t *string_alloc(size_t cap, size_t inc);
 void string_append_char(string_t *str, char ch);
 void string_append_cstring(string_t *str, char *s);
+string_t *string_from_cstring(char *s);
+char *string_to_cstring(string_t *str);
+size_t string_strlen(string_t *str);
+int string_strcmp(string_t *left, string_t *right);
+int string_strcastcmp(string_t *left, string_t *right);
+string_t *string_strcpy(string_t *dst, string_t *src);
+string_t *string_strcat(string_t *dst, string_t *src);
 void string_free(string_t *str);
 
 #endif

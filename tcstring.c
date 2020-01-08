@@ -79,6 +79,46 @@ void string_append_cstring(string_t *str, char *s) {
 	}
 }
 
+string_t *string_from_cstring(char *s) {
+	string_t *str;
+
+	str = string_alloc(256, 256);
+	if (str == NULL) {
+		return NULL;
+	}
+
+	string_append_cstring(str, s);
+
+	return str;
+}
+
+char *string_to_cstring(string_t *str) {
+	return strdup(str->cstring);
+}
+
+size_t string_strlen(string_t *str) {
+	return str->len;
+}
+
+int string_strcmp(string_t *left, string_t *right) {
+	return strcmp(left->cstring, right->cstring);
+}
+
+int string_strcastcmp(string_t *left, string_t *right) {
+	return strcasecmp(left->cstring, right->cstring);
+}
+
+string_t *string_strcpy(string_t *dst, string_t *src) {
+	dst->len=0;
+	string_append_cstring(dst, src->cstring);
+	return dst;
+}
+
+string_t *string_strcat(string_t *dst, string_t *src) {
+	string_append_cstring(dst, src->cstring);
+	return dst;
+}
+
 void string_free(string_t *str) {
 	if (str != NULL) {
 		if (str->cstring != NULL) {
