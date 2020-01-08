@@ -51,6 +51,34 @@ string_t *string_alloc(size_t cap, size_t inc) {
 	return str;
 }
 
+void string_append_char(string_t *str, char ch) {
+	if (str->len + 1 == str->cap) { /* always leave +1 for '\0' byte */
+		char *newcstring;
+
+		str->cap += str->inc;
+
+		newcstring = (char *) reallocarray(str->cstring, sizeof(char),
+								str->cap);
+		if (newcstring == NULL) {
+			return;
+		}
+		str->cstring = newcstring;
+		memset(str->cstring + str->cap - str->inc, '\0',
+						sizeof(char) * str->inc);
+	}
+
+	
+	str->cstring[str->len] = ch;
+	str->len++;
+}
+
+void string_append_cstring(string_t *str, char *s) {
+	size_t i;
+	for (i = 0; i < strlen(s); i++) {
+		string_append_char(str, s[i]);
+	}
+}
+
 void string_free(string_t *str) {
 	if (str != NULL) {
 		if (str->cstring != NULL) {
@@ -63,6 +91,3 @@ void string_free(string_t *str) {
 	}
 }
 
-int main(void) {
-	return 0;
-}

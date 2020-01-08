@@ -37,6 +37,8 @@ struct string {
 typedef struct string string_t;
 
 string_t *string_alloc(size_t cap, size_t inc);
+void string_append_char(string_t *str, char ch);
+void string_append_cstring(string_t *str, char *s);
 void string_free(string_t *str);
 
 #endif
