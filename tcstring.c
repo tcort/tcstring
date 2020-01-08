@@ -22,6 +22,7 @@ SOFTWARE.
 
 ******************************************************************************/
 
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -108,6 +109,10 @@ int string_strcastcmp(string_t *left, string_t *right) {
 	return strcasecmp(left->cstring, right->cstring);
 }
 
+int string_strcoll(string_t *left, string_t *right) {
+	return strcoll(left->cstring, right->cstring);
+}
+
 string_t *string_strcpy(string_t *dst, string_t *src) {
 	dst->len=0;
 	string_append_cstring(dst, src->cstring);
@@ -117,6 +122,31 @@ string_t *string_strcpy(string_t *dst, string_t *src) {
 string_t *string_strcat(string_t *dst, string_t *src) {
 	string_append_cstring(dst, src->cstring);
 	return dst;
+}
+
+void string_chomp(string_t *str) {
+	while (str->len > 0) {
+		if (str->cstring[str->len-1] == '\n' ||
+			str->cstring[str->len-1] == '\r') {
+
+			str->cstring[str->len-1] = '\0';
+			str->len--;
+
+		} else {
+			break;
+		}
+	}
+}
+
+void string_trim(string_t *str) {
+	while (str->len > 0) {
+		if (isspace(str->cstring[str->len-1])) {
+			str->cstring[str->len-1] = '\0';
+			str->len--;
+		} else {
+			break;
+		}
+	}
 }
 
 void string_free(string_t *str) {

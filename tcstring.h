@@ -44,8 +44,11 @@ char *string_to_cstring(string_t *str);
 size_t string_strlen(string_t *str);
 int string_strcmp(string_t *left, string_t *right);
 int string_strcastcmp(string_t *left, string_t *right);
+int string_strcoll(string_t *left, string_t *right);
 string_t *string_strcpy(string_t *dst, string_t *src);
 string_t *string_strcat(string_t *dst, string_t *src);
+void string_chomp(string_t *str);
+void string_trim(string_t *str);
 void string_free(string_t *str);
 
 #endif
