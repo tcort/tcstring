@@ -1,0 +1,11 @@
+CMakeCache.txt
+CMakeFiles/
+CPackConfig.cmake
+CPackSourceConfig.cmake
+CTestTestfile.cmake
+Makefile
+Testing/
+cmake_install.cmake
+libtcstring.so*
+tcstring.pc
+tcstring.test
